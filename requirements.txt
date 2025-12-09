@@ -1,0 +1,7 @@
+torch>=2.0.0
+torchvision>=0.15.0
+opacus>=1.4.0
+torchattacks>=3.4.0
+matplotlib
+numpy
+pytest
