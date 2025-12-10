@@ -31,7 +31,7 @@ def main():
     history = {"clean": [], "robust": [], "epsilon": []}
 
     for epoch in range(1, config.EPOCHS + 1):
-        loss = train.train_hybrid_epoch(
+        train.train_hybrid_epoch(
             model, shadow_model, optimizer, train_loader, privacy_engine, epoch
         )
         acc_clean, acc_adv = train.evaluate(model, shadow_model, test_loader)

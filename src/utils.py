@@ -1,8 +1,7 @@
-import torch
+import os
 from torchvision import datasets, transforms
 from torch.utils.data import DataLoader
 import matplotlib.pyplot as plt
-import os
 
 
 def get_dataloaders(batch_size, data_root="./data"):

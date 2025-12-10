@@ -1,8 +1,7 @@
 # The Gradient Noise Paradox: Robustness vs. Privacy
-
 This repository explores a tension in machine learning safety: how Differential Privacy (DP) training (gradient clipping + noise injection) affects adversarial robustness. The codebase implements a Shadow Model technique so attacks can be generated without interfering with privacy accounting.
 
-This README covers: installation, data preparation, example runs (train/evaluate), project structure, configuration points, and how to run tests.
+This README covers: result, installation, data preparation, example runs (train/evaluate), project structure, configuration points, and how to run tests.
 
 ## Quick summary
 - Goal: empirically study whether DP-SGD (via Opacus) degrades adversarial robustness.
@@ -10,6 +9,19 @@ This README covers: installation, data preparation, example runs (train/evaluate
 
 ## Requirements
 This project targets Python 3.8+. The main dependencies are listed in `requirements.txt`.
+
+## Result
+
+![Robustness vs Privacy tradeoff](results/tradeoff_plot.png)
+
+Figure: Robustness vs Privacy tradeoff — this plot shows model adversarial accuracy (y-axis) against the privacy budget (epsilon, x-axis) or equivalently noise multiplier used during DP-SGD. Each curve/point compares either different noise multipliers or clipping norms (check the experiment legend in code/results). The general pattern in this repository's experiments is:
+
+- As privacy becomes stronger (smaller epsilon / larger noise multiplier), adversarial accuracy falls — indicating worse robustness.
+- For low-to-moderate noise, the drop can be gradual; at high noise the model often becomes both less accurate and less robust.
+- Shadow-model attacks were used to avoid leaking private gradients while obtaining realistic adversarial examples.
+
+Interpretation: DP-SGD's gradient clipping and added noise reduces the signal available to adversarial training or robustifying updates, which tends to degrade adversarial robustness. The plot summarizes those tradeoffs for the CIFAR-10 experiments in this repo.
+
 
 ## Installation
 On Windows (PowerShell):

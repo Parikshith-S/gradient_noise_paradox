@@ -6,7 +6,6 @@ import torch
 import torch.nn as nn
 import numpy as np
 import torchattacks
-from opacus import PrivacyEngine
 from src import config
 
 
